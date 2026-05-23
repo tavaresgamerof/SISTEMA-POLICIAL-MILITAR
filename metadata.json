@@ -1,0 +1,6 @@
+{
+  "name": "Sistema Policial Militar 18º BPM/M",
+  "description": "Sistema policial militar e chancelaria eletrônica do 18º Batalhão de Polícia Militar Metropolitano (PMESP) para servidores de FiveM Roleplay, com suporte de IA Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

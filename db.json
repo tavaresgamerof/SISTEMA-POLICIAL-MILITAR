@@ -1,115 +1,6 @@
 {
-  "policiais": [
-    {
-      "id": "p-1",
-      "nome": "Francisco de Souza Camargo",
-      "rg": "PM-12.340",
-      "patente": "Cel PM",
-      "funcao": "Comandante Geral do 18º BPM/M",
-      "dataIngresso": "2010-02-15",
-      "discordId": "3210987654321098",
-      "situação": "Ativo"
-    },
-    {
-      "id": "p-2",
-      "nome": "Alexandre Magno Guedes",
-      "rg": "PM-25.671",
-      "patente": "Ten Cel PM",
-      "funcao": "Subcomandante do Batalhão",
-      "dataIngresso": "2012-05-10",
-      "discordId": "9876543210987654",
-      "situação": "Ativo"
-    },
-    {
-      "id": "p-3",
-      "nome": "Roberta Martins Neves",
-      "rg": "PM-48.905",
-      "patente": "Maj PM",
-      "funcao": "Chefe da Seção de Recursos Humanos (Seção P/1)",
-      "dataIngresso": "2014-08-22",
-      "discordId": "1234567890123456",
-      "situação": "Ativo"
-    },
-    {
-      "id": "p-4",
-      "nome": "Rodrigo Augusto Silva",
-      "rg": "PM-81.209",
-      "patente": "Cap PM",
-      "funcao": "Oficial Coordenador de Operações (Seção P/3)",
-      "dataIngresso": "2016-11-03",
-      "discordId": "2345678901234567",
-      "situação": "Ativo"
-    },
-    {
-      "id": "p-5",
-      "nome": "Erick Rodrigues Oliveira",
-      "rg": "PM-90.111",
-      "patente": "1º Ten PM",
-      "funcao": "Comandante da 1ª Cia PM",
-      "dataIngresso": "2018-04-12",
-      "discordId": "3456789012345678",
-      "situação": "Ativo"
-    },
-    {
-      "id": "p-6",
-      "nome": "Marcos de Souza Pontes",
-      "rg": "PM-12.775",
-      "patente": "1º Sgt PM",
-      "funcao": "Encarregado Administrativo da Cia PM",
-      "dataIngresso": "2015-01-20",
-      "discordId": "4567890123456789",
-      "situação": "Ativo"
-    },
-    {
-      "id": "p-7",
-      "nome": "Douglas Ricardo Souza",
-      "rg": "PM-23.456",
-      "patente": "Cb PM",
-      "funcao": "Motorista de Rota de Patrulhamento",
-      "dataIngresso": "2020-09-14",
-      "discordId": "5678901234567890",
-      "situação": "Ativo"
-    },
-    {
-      "id": "p-8",
-      "nome": "Felipe Dias Silva",
-      "rg": "PM-33.780",
-      "patente": "Sd PM",
-      "funcao": "Rádio Patrulha - Integrante",
-      "dataIngresso": "2022-03-01",
-      "discordId": "6789012345678901",
-      "situação": "Ativo"
-    }
-  ],
-  "assinaturas": [
-    {
-      "id": "a-1",
-      "nome": "Francisco de Souza Camargo",
-      "rg": "PM-12.340",
-      "patente": "Cel PM",
-      "cargo": "Comandante Geral do 18º BPM/M",
-      "rubricaSimbolo": "ASSINATURA DIGITAL GERAL: [CEL PM F. CAMARGO - COMANDANTE - CHAVE: #F8293KA]",
-      "ativo": true
-    },
-    {
-      "id": "a-2",
-      "nome": "Alexandre Magno Guedes",
-      "rg": "PM-25.671",
-      "patente": "Ten Cel PM",
-      "cargo": "Subcomandante do Batalhão",
-      "rubricaSimbolo": "ASSINATURA DIGITAL SUB: [TEN CEL A. GUEDES - SUBCOMAN - CHAVE: #G1094JD]",
-      "ativo": true
-    },
-    {
-      "id": "a-3",
-      "nome": "Roberta Martins Neves",
-      "rg": "PM-48.905",
-      "patente": "Maj PM",
-      "cargo": "Chefe da Seção P/1",
-      "rubricaSimbolo": "ASSINATURA DIGITAL EM: [MAJ PM R. NEVES - ESTADO MAIOR - CHAVE: #M4481KL]",
-      "ativo": true
-    }
-  ],
+  "policiais": [],
+  "assinaturas": [],
   "templates": [
     {
       "id": "t-1",
@@ -117,7 +8,7 @@
       "tipo": "Promoção",
       "categoria": "RECURSOS HUMANOS",
       "descricao": "Template padrão de ascensão funcional devido ao meritório destaque na radiopatrulha ou operações especiais.",
-      "conteudo": "### PORTARIA DE PROMOÇÃO POR DESTAQUE OPERACIONAL Nº PMESP-18BPMM-2026-###\n\nO COMANDANTE DO 18º BATALHÃO DE POLÍCIA MILITAR METROPOLITANO, no uso de suas atribuições legais,\n\n**RESOLVE:**\n\n**Artigo 1º** - Promover, por Destaque Operacional, à patente de `[Nova Patente]`, o policial militar `[Nome do Policial]`, RG `[RG]`, atualmente figurando na patente de `[Patente Atual]`.\n\n**Artigo 2º** - A referida ascensão fundamenta-se nos excepcionais serviços operacionais prestados à comunidade do 18º BPM/M, notadamente onde demonstrou tirocínio policial avançado, audácia militar e total apego à doutrina de preservação da ordem pública e defesa da vida.\n\n**Artigo 3º** - Ficam atribuídos ao promovido todos os direitos pecuniários e prerrogativas inerentes à nova graduação.\n\n**Artigo 4º** - Esta Portaria entra em vigor na data de sua assinatura.\n\nQuartel em São Paulo, SP, [Data Atual].\n\n\n__________________________________\nComandante Geral do 18º BPM/M"
+      "conteudo": "### PORTARIA DE PROMOÇÃO POR DESTAQUE OPERACIONAL Nº PMESP-###\n\nO COMANDANTE DO 18º BATALHÃO DE POLÍCIA MILITAR METROPOLITANO, no uso de suas atribuições legais,\n\n**RESOLVE:**\n\n**Artigo 1º** - Promover, por Destaque Operacional, à patente de `[Nova Patente]`, o policial militar `[Nome do Policial]`, RG `[RG]`, atualmente figurando na patente de `[Patente Atual]`.\n\n**Artigo 2º** - A referida ascensão fundamenta-se nos excepcionais serviços operacionais prestados à comunidade, notadamente onde demonstrou tirocínio policial avançado, audácia militar e total apego à doutrina de preservação da ordem pública.\n\n**Artigo 3º** - Ficam atribuídos ao promovido todos os direitos pecuniários e prerrogativas inerentes à nova graduação.\n\n**Artigo 4º** - Esta Portaria entra em vigor na data de sua assinatura.\n\nQuartel em São Paulo, SP, [Data Atual].\n\n\n__________________________________\nComandante Geral"
     },
     {
       "id": "t-2",
@@ -125,7 +16,7 @@
       "tipo": "Elogio Individual",
       "categoria": "RECURSOS HUMANOS",
       "descricao": "Elogio oficial inserido nos assentamentos individuais do militar por conduta exemplar e dedicação extrema ao serviço.",
-      "conteudo": "### NOTA DE ELOGIO INDIVIDUAL Nº PMESP-18BPMM-2026-###\n\nFAZ SABER, o Comando da Seção de Recursos Humanos (P/1) do 18º BPM/M, que é dever de justiça consignar nos assentamentos individuais do policial militar abaixo apontado, o seguinte reconhecimento público:\n\n**INTEGRANTE ELOGIADO:**\n- **Nome:** `[Nome do Policial]`\n- **RG:** `[RG]`\n- **Patente:** `[Patente Atual]`\n\n**FATO MERITÓRIO:**\nDurante a execução do Plano Metas da Polícia Militar na circunscrição do 18º BPM/M, o referendo policial demonstrou dedicação infatigável e extraordinário profissionalismo.\n\nTal atitude dignifica a farda paulista e estabelece paradigma ético-operativo aos seus pares.\n\nRegistra-se o presente Elogio para fins de qualificação técnica para promoções futuras.\n\nDê-se publicidade em Boletim Interno.\n\nQuartel em São Paulo, SP, [Data Atual].\n\n\n__________________________________\nSeção P/1 - Recursos Humanos"
+      "conteudo": "### NOTA DE ELOGIO INDIVIDUAL Nº PMESP-###\n\nFAZ SABER, o Comando da Seção de Recursos Humanos (P/1), que é dever de justiça consignar nos assentamentos individuais do policial militar abaixo apontado, o seguinte reconhecimento público:\n\n**INTEGRANTE ELOGIADO:**\n- **Nome:** `[Nome do Policial]`\n- **RG:** `[RG]`\n- **Patente:** `[Patente Atual]`\n\n**FATO MERITÓRIO:**\nDurante a execução do policiamento ostensivo e preservação da ordem pública, o referendo militar demonstrou dedicação infatigável e extraordinário profissionalismo.\n\nTal atitude dignifica a farda paulista e estabelece paradigma ético-operativo aos seus pares.\n\nDê-se publicidade em Boletim Interno.\n\nQuartel em São Paulo, SP, [Data Atual].\n\n\n__________________________________\nSeção P/1 - Recursos Humanos"
     },
     {
       "id": "t-3",
@@ -133,17 +24,17 @@
       "tipo": "Ordem de Serviço",
       "categoria": "OPERACIONAL",
       "descricao": "Distribuição tática de viaturas e contingente militar para operações sazonais de patrulhamento repressivo.",
-      "conteudo": "### ORDEM DE SERVIÇO OPERACIONAL Nº PMESP-18BPMM-2026-###\n\n**ASSUNTO:** Planejamento e Execução do Policiamento Sazonal - OPERAÇÃO FORÇA TOTAL 18\n\n**COORDENADOR:** Seção de Operações (P/3) - 18º BPM/M\n\n**RESOLVE:**\n\n**1. SITUAÇÃO:**\nDetectou-se necessidade de aumento de delitos de oportunidade no perímetro do Subsetor Sul do 18º BPM/M. Torna-se imperativo o aumento da densidade visual do fardamento militar e bloqueios táticos.\n\n**2. EXECUÇÃO:**\n- **Período de Execução:** [Data e Hora de Início] a [Data e Hora de Fim].\n- **Emprego Operacional:** Força Patrulha e viaturas de Rádio Patrulha Padrão.\n- **Foco Tático:** Abordagem a motocicletas com dois ocupantes, vistoria veicular estrita e ponto de estacionamento dinâmico.\n\n**3. INSTRUÇÕES COORDENADAS:**\nOs comandantes de viatura deverão manter contato rádio intermitente na sintonia principal com o COPOM do Batalhão.\n\nQuartel em São Paulo, SP, [Data Atual].\n\n\n__________________________________\nSeção P/3 - Operações e Planejamento"
+      "conteudo": "### ORDEM DE SERVIÇO OPERACIONAL Nº PMESP-###\n\n**ASSUNTO:** Planejamento e Execução do Policiamento Sazonal - OPERAÇÃO FORÇA TOTAL\n\n**COORDENADOR:** Seção de Operações (P/3)\n\n**RESOLVE:**\n\n**1. SITUAÇÃO:**\nDetectou-se necessidade de aumento de efetivos em patrulhamento na área urbana central do subsetor do batalhão. Torna-se imperativo o aumento da densidade visual do fardamento militar e bloqueios táticos.\n\n**2. EXECUÇÃO:**\n- **Período de Execução:** [Data e Hora de Início] a [Data e Hora de Fim].\n- **Emprego Operacional:** Força Patrulha e viaturas de Rádio Patrulha Padrão.\n- **Foco Tático:** Abordagem a motocicletas com dois ocupantes, vistoria veicular estrita e ponto de estacionamento dinâmico.\n\nQuartel em São Paulo, SP, [Data Atual].\n\n\n__________________________________\nSeção P/3 - Operações e Planejamento"
     }
   ],
   "documentos": [],
   "operacoes": [],
   "logs": [
     {
-      "id": "log-init",
-      "data": "2026-05-23T15:45:00Z",
-      "autor": "COMANDO DO BATALHÃO",
-      "acao": "Sistema Policial Militar inicializado. Base de dados limpa e restaurada para os padrões primários de chancelaria conforme ordem superior.",
+      "id": "log-reset-init",
+      "data": "2026-05-23T15:51:30Z",
+      "autor": "ADMINISTRAÇÃO",
+      "acao": "Sistema Policial Militar redefinido para o padrão limpo de fábrica. Base de dados de policiais e chancelas ativa reconfigurada.",
       "tipo": "Sistema",
       "ip": "127.0.0.1"
     }
@@ -428,7 +319,7 @@
     {
       "id": "q-19",
       "categoria": "Matemática",
-      "pergunta": "Uma ocorrência complexa levou 2 horas e 15 minutos para ser devidamente registrada. Em segundos, qual a duração total dessa intervenção?",
+      "pergunta": "Uma ocorrência complexa levou 2 horas e 15 minutos para ser devidamente registrada. Em segundos, qual a duração total dessa invervenção?",
       "alternativas": {
         "A": "8100 segundos",
         "B": "7200 segundos",

@@ -16,6 +16,8 @@ interface DiscordAuthSimProps {
 
 export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoForm, onGoToEdital }: DiscordAuthSimProps) {
   const [selectedPolicialId, setSelectedPolicialId] = useState<string>('');
+  const [isDiscordModalOpen, setIsDiscordModalOpen] = useState(false);
+  const [authorizing, setAuthorizing] = useState(false);
 
   // First administrator form state
   const [initNome, setInitNome] = useState('');
@@ -59,10 +61,17 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
     }
   };
 
-  const handleConnect = () => {
-    if (selectedPolicial) {
-      onLogin(selectedPolicial, derivedRole);
+  const handleAuthorizeSim = () => {
+    if (!selectedPolicial) {
+      alert('Por favor, selecione um policial militar para simular a autenticação do Discord.');
+      return;
     }
+    setAuthorizing(true);
+    setTimeout(() => {
+      setAuthorizing(false);
+      setIsDiscordModalOpen(false);
+      onLogin(selectedPolicial, derivedRole);
+    }, 1500);
   };
 
   const handleRegisterFirstComandante = async (e: React.FormEvent) => {
@@ -147,64 +156,27 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
         </div>
 
         {hasPoliciais ? (
-          <>
-            {/* Discord Simulation Block */}
-            <div className="bg-[#182130] rounded-lg border border-slate-800 p-4 mb-5">
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                Autenticar via Discord ID
-              </label>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs text-slate-400 mb-2">
-                    Selecione o Policial Militar cadastrado no painel para simular a autorização enviada pelo Bot do Discord:
-                  </p>
-                  <select
-                    className="w-full bg-[#0d1420] text-slate-200 border border-slate-700/50 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-blue-500 transition-colors"
-                    value={currentSelectedId}
-                    onChange={(e) => setSelectedPolicialId(e.target.value)}
-                  >
-                    {availablePoliciais.map(p => (
-                      <option key={p.id} value={p.id}>
-                        [{p.patente}] {p.nome} - RG {p.rg}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+          <div className="space-y-4">
+            <p className="text-xs text-slate-400 text-center leading-relaxed">
+              O sistema de chancelaria eletrônica, escalas de serviço e relatórios táticos necessita de autorização ativa via Discord institucional do Batalhão.
+            </p>
 
-                {/* Simulated Permissions Metadata */}
-                {selectedPolicial && (
-                  <div className="bg-[#0c121e] rounded p-3 border border-slate-800/40 text-xs">
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-slate-400 font-medium">Patente Oficial:</span>
-                      <span className="text-slate-200 font-mono text-xs">{selectedPolicial.patente}</span>
-                    </div>
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-slate-400 font-medium">Discord ID Atrelado:</span>
-                      <span className="text-indigo-400 font-mono text-[10px]">{selectedPolicial.discordId}</span>
-                    </div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-slate-400 font-medium">Nivel COR:</span>
-                      <span className={`text-[10px] uppercase font-bold px-1.5 rounded border ${getRoleBadgeColor(derivedRole)}`}>
-                        {derivedRole}
-                      </span>
-                    </div>
-                    <p className="text-slate-400 leading-relaxed text-[11px] pt-1.5 border-t border-slate-800/70">
-                      {getRoleDescription(derivedRole)}
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Action button simulating genuine third-party Oauth redirection */}
+            {/* Official Discord Authentication Simulator Button */}
             <button
-              onClick={handleConnect}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 px-4 rounded-md transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-950/50 hover:shadow-indigo-600/20 text-sm group cursor-pointer"
+              onClick={() => setIsDiscordModalOpen(true)}
+              className="w-full bg-[#5865F2] hover:bg-[#4752C4] active:scale-[0.98] text-white font-bold py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-[#5865f2]/20 hover:shadow-[#5865f2]/40 text-xs uppercase tracking-wider cursor-pointer font-sans"
             >
-              <LogIn className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              <span>Confirmar e Entrar no Quartel</span>
+              <LogIn className="w-4 h-4 shrink-0" />
+              <span>Autenticar via Discord</span>
             </button>
-          </>
+
+            <div className="flex flex-col items-center gap-1 bg-[#182130]/40 rounded-lg p-3 border border-slate-800/40 mt-3 text-center">
+              <span className="text-[10px] text-slate-400 font-mono">Status da Conexão: Prontidão Operativo</span>
+              <p className="text-[9px] text-slate-500 max-w-[280px] leading-relaxed">
+                Integração estandartizada com banco de dados de whitelist de RP.
+              </p>
+            </div>
+          </div>
         ) : (
           <form onSubmit={handleRegisterFirstComandante} className="space-y-4">
             <div className="bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[11px] leading-relaxed p-3.5 rounded-lg font-sans">
@@ -220,7 +192,7 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
                   placeholder="Ex: Tavares Rodrigues de Oliveira"
                   value={initNome}
                   onChange={(e) => setInitNome(e.target.value)}
-                  className="w-full bg-[#0d1420] text-slate-250 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans"
+                  className="w-full bg-[#0d1420] text-slate-100 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans"
                 />
               </div>
 
@@ -233,7 +205,7 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
                     placeholder="Ex: PM-12.345"
                     value={initRg}
                     onChange={(e) => setInitRg(e.target.value)}
-                    className="w-full bg-[#0d1420] text-slate-250 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans font-mono"
+                    className="w-full bg-[#0d1420] text-slate-100 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans font-mono"
                   />
                 </div>
                 <div>
@@ -241,13 +213,13 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
                   <select
                     value={initPatente}
                     onChange={(e: any) => setInitPatente(e.target.value)}
-                    className="w-full bg-[#0d1420] text-slate-250 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans"
+                    className="w-full bg-[#0d1420] text-slate-100 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans"
                   >
-                    <option value="Cel PM">Cel PM (Coronel)</option>
-                    <option value="Ten Cel PM">Ten Cel PM (Tenente-Coronel)</option>
-                    <option value="Maj PM">Maj PM (Major)</option>
-                    <option value="Cap PM">Cap PM (Capitão)</option>
-                    <option value="1º Ten PM">1º Ten PM (Primeiro-Tenente)</option>
+                    <option value="Cel PM" className="bg-[#0d1420] text-slate-100">Cel PM (Coronel)</option>
+                    <option value="Ten Cel PM" className="bg-[#0d1420] text-slate-100">Ten Cel PM (Tenente-Coronel)</option>
+                    <option value="Maj PM" className="bg-[#0d1420] text-slate-100">Maj PM (Major)</option>
+                    <option value="Cap PM" className="bg-[#0d1420] text-slate-100">Cap PM (Capitão)</option>
+                    <option value="1º Ten PM" className="bg-[#0d1420] text-slate-100">1º Ten PM (Primeiro-Tenente)</option>
                   </select>
                 </div>
               </div>
@@ -260,7 +232,7 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
                   placeholder="Ex: Comandante Geral do Batalhão"
                   value={initFuncao}
                   onChange={(e) => setInitFuncao(e.target.value)}
-                  className="w-full bg-[#0d1420] text-slate-250 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans"
+                  className="w-full bg-[#0d1420] text-slate-100 border border-slate-700/50 rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-amber-500 font-sans"
                 />
               </div>
             </div>
@@ -286,6 +258,137 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
           </span>
         </div>
       </div>
+
+      {/* FULL-SCREEN SIMULATED DISCORD OAUTH INTERACTIVE SCREEN */}
+      {isDiscordModalOpen && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 font-sans backdrop-blur-sm">
+          <div className="w-full max-w-[480px] bg-[#313338] text-[#dbdee1] rounded-lg shadow-2xl relative overflow-hidden border border-[#1e1f22]">
+            {/* Discord Branding Accent */}
+            <div className="h-1.5 bg-[#5865F2]" />
+            
+            <div className="p-6 md:p-8">
+              {/* Connected States Visualization */}
+              <div className="flex items-center justify-center gap-8 mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#5865F2] flex items-center justify-center text-white font-bold shadow-lg">
+                  {/* Styled Discord Icon representation */}
+                  <svg className="w-6 h-6 fill-current" viewBox="0 0 127.14 96.36">
+                    <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.9-.65,1.76-1.34,2.58-2a75.58,75.58,0,0,0,72.9,0c.82.72,1.68,1.4,2.58,2a68.45,68.45,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.87,48.24,124.05,25.43,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z" />
+                  </svg>
+                </div>
+                <div className="flex-1 h-[2px] bg-slate-600 relative flex items-center justify-center">
+                  <span className="px-2 py-0.5 bg-[#2b2d31] border border-slate-700 rounded text-[9px] text-[#248046] font-mono font-bold uppercase tracking-wider">
+                    Sincronizado
+                  </span>
+                </div>
+                <div className="w-12 h-12 rounded-full bg-[#1e1f22] border border-amber-500/30 flex items-center justify-center shadow-lg">
+                  <Shield className="w-6 h-6 text-amber-500" />
+                </div>
+              </div>
+
+              {/* Server Access Text */}
+              <div className="text-center mb-6">
+                <h3 className="text-lg font-bold text-white tracking-tight">AUTORIZAR ACESSO DA CONTA</h3>
+                <p className="text-[#949ba4] text-xs mt-1.5 leading-relaxed">
+                  O aplicativo <span className="text-white font-semibold uppercase">Sistema Policial Militar 18º BPM/M</span> solicita acesso para identificar suas credenciais funcionais com base no banco de dados de RP.
+                </p>
+              </div>
+
+              {/* Scopes and permissions list */}
+              <div className="space-y-4 pt-4 border-t border-[#3f4147]">
+                <div>
+                  <span className="text-[10px] font-bold text-[#b5bac1] uppercase tracking-wider block mb-2">Este aplicativo receberá acesso para:</span>
+                  <ul className="space-y-1.5 text-xs text-[#dbdee1]">
+                    <li className="flex items-center gap-2">
+                      <span className="text-[#248046] font-bold text-sm">✓</span>
+                      <span>Bucar seu Nome Completo, Registro Geral (RG) e Ficha de Serviço Militar</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-[#248046] font-bold text-sm">✓</span>
+                      <span>Carregar cargo de comando e habilitar chancelas oficiais</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-[#248046] font-bold text-sm">✓</span>
+                      <span>Gerar carimbos criptográficos de SP nos relatórios do quartel</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Identity Selection Block */}
+                <div className="bg-[#2b2d31] p-4 rounded-md border border-[#202225] mt-4">
+                  <label className="block text-[10px] uppercase font-bold text-[#b5bac1] mb-2 tracking-wider">
+                    Selecione seu Registro Policial cadastrado:
+                  </label>
+                  
+                  <select
+                    className="w-full bg-[#1e1f22] text-[#dbdee1] border border-[#202225] rounded px-3 py-2 text-xs focus:outline-none focus:border-[#5865F2] transition-colors cursor-pointer"
+                    value={currentSelectedId}
+                    onChange={(e) => setSelectedPolicialId(e.target.value)}
+                  >
+                    {availablePoliciais.map(p => (
+                      <option key={p.id} value={p.id} className="bg-[#1e1f22] text-[#dbdee1]">
+                        [{p.patente}] {p.nome} - RG {p.rg}
+                      </option>
+                    ))}
+                  </select>
+
+                  {/* Selected Cop Details Card */}
+                  {selectedPolicial && (
+                    <div className="mt-3.5 pt-3 border-t border-[#3f4147] text-xs">
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                        <div>
+                          <span className="block text-[9px] uppercase font-semibold text-slate-500">Patente Ativa:</span>
+                          <span className="text-white font-medium">{selectedPolicial.patente}</span>
+                        </div>
+                        <div>
+                          <span className="block text-[9px] uppercase font-semibold text-slate-500">Discord ID Atrelado:</span>
+                          <span className="text-[#5865f2] font-mono font-bold text-[10px]">{selectedPolicial.discordId}</span>
+                        </div>
+                        <div className="col-span-2 mt-1">
+                          <span className="block text-[9px] uppercase font-semibold text-slate-500">Função/Cargo Correlato:</span>
+                          <span className="text-emerald-400 font-semibold">{selectedPolicial.funcao}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Botões do rodapé igual ao estilo oficial Discord */}
+              <div className="bg-[#2b2d31] p-4 -mx-6 -mb-6 md:-mx-8 md:-mb-8 mt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <span className="text-[9px] text-[#949ba4] text-center sm:text-left leading-tight max-w-[200px]">
+                  Ambiente blindado criptograficamente com suporte à whitelist PMESP.
+                </span>
+                
+                <div className="flex gap-2.5 w-full sm:w-auto justify-end shrink-0">
+                  <button
+                    type="button"
+                    disabled={authorizing}
+                    onClick={() => setIsDiscordModalOpen(false)}
+                    className="px-4 py-2 rounded text-[#dbdee1] text-xs font-semibold hover:bg-[#35373c] transition-colors cursor-pointer"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="button"
+                    disabled={authorizing}
+                    onClick={handleAuthorizeSim}
+                    className="px-5 py-2 rounded bg-[#248046] hover:bg-[#1a6535] text-white text-xs font-bold transition-colors disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+                  >
+                    {authorizing ? (
+                      <>
+                        <span className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin shrink-0"></span>
+                        <span>Autorizando...</span>
+                      </>
+                    ) : (
+                      <span>Autorizar</span>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

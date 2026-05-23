@@ -101,7 +101,12 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
       });
 
       if (!resPol.ok) {
-        throw new Error('Falha tática ao registrar o militar no banco de dados.');
+        let errMsg = 'Falha tática ao registrar o militar no banco de dados.';
+        try {
+          const errData = await resPol.json();
+          if (errData && errData.error) errMsg += ` Detalhes: ${errData.error}`;
+        } catch (e) {}
+        throw new Error(errMsg);
       }
 
       const savedPol = await resPol.json();
@@ -115,11 +120,20 @@ export default function DiscordAuthSim({ onLogin, availablePoliciais, onGoToRsoF
         rubricaSimbolo: `CHANCELAR OFICIAL: [${initPatente} ${initNome.toUpperCase()} - COMANDO-GERAL - CHAVE: #${Math.random().toString(36).substring(2, 8).toUpperCase()}]`
       };
 
-      await fetch('/api/assinaturas', {
+      const resSig = await fetch('/api/assinaturas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newSig)
       });
+
+      if (!resSig.ok) {
+        let errMsg = 'Falha tática ao registrar a chancela oficial do Comandante.';
+        try {
+          const errData = await resSig.json();
+          if (errData && errData.error) errMsg += ` Detalhes: ${errData.error}`;
+        } catch (e) {}
+        throw new Error(errMsg);
+      }
 
       // 3. Initiate seamless login session
       onLogin(savedPol, getRoleFromPolicial(savedPol));
